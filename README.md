@@ -1,22 +1,28 @@
 <div align="center">
 
 ```
-███████╗███████╗███╗   ██╗████████╗██╗███╗   ██╗███████╗██╗      ██████╗  ██████╗
-██╔════╝██╔════╝████╗  ██║╚══██╔══╝██║████╗  ██║██╔════╝██║     ██╔════╝ ██╔═══██╗
-███████╗█████╗  ██╔██╗ ██║   ██║   ██║██╔██╗ ██║█████╗  ██║     ██║  ███╗██║   ██║
-╚════██║██╔══╝  ██║╚██╗██║   ██║   ██║██║╚██╗██║██╔══╝  ██║     ██║   ██║██║   ██║
-███████║███████╗██║ ╚████║   ██║   ██║██║ ╚████║███████╗███████╗╚██████╔╝╚██████╔╝
-╚══════╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝ ╚═════╝  ╚═════╝
+ ╔══════════════════════════════════════════════════════════════════════╗
+ ║                                                                      ║
+ ║   ███████╗███████╗███╗   ██╗████████╗██╗███╗   ██╗███████╗██╗       ║
+ ║   ██╔════╝██╔════╝████╗  ██║╚══██╔══╝██║████╗  ██║██╔════╝██║       ║
+ ║   ███████╗█████╗  ██╔██╗ ██║   ██║   ██║██╔██╗ ██║█████╗  ██║       ║
+ ║   ╚════██║██╔══╝  ██║╚██╗██║   ██║   ██║██║╚██╗██║██╔══╝  ██║       ║
+ ║   ███████║███████╗██║ ╚████║   ██║   ██║██║ ╚████║███████╗███████╗  ║
+ ║   ╚══════╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝  ║
+ ║                                                                      ║
+ ║            G  O  —  S  E  C  U  R  I  T  Y  —  P  L  A  T  F  O  R  M  ║
+ ║                                                                      ║
+ ╚══════════════════════════════════════════════════════════════════════╝
 ```
 
-**Insider Threat Detection & System Hardening Platform**
+**Insider Threat Detection · Risk Scoring · System Hardening · MITRE ATT&CK**
 
 [![Go Version](https://img.shields.io/badge/Go-1.22+-00ADD8?style=flat&logo=go&logoColor=white)](https://go.dev)
 [![License](https://img.shields.io/badge/License-MIT-22c55e?style=flat)](LICENSE)
-[![Tests](https://img.shields.io/badge/Tests-46%20passing-22c55e?style=flat&logo=checkmarx)](.)
+[![Tests](https://img.shields.io/badge/Tests-46%20passing-22c55e?style=flat)](.)
 [![Version](https://img.shields.io/badge/Version-1.0.0-6366f1?style=flat)](CHANGELOG.md)
-[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-0ea5e9?style=flat)](.)
-[![MITRE](https://img.shields.io/badge/MITRE%20ATT%26CK-Mapped-ef4444?style=flat)](https://attack.mitre.org/)
+[![Platform](https://img.shields.io/badge/Windows%20%7C%20Linux%20%7C%20macOS-supported-0ea5e9?style=flat)](.)
+[![MITRE](https://img.shields.io/badge/MITRE%20ATT%26CK-8%20techniques-ef4444?style=flat)](https://attack.mitre.org/)
 
 [Features](#features) · [Quick Start](#quick-start) · [Installation](#installation) · [Detection Rules](#detection-rules) · [Architecture](#architecture) · [Performance](#performance) · [Roadmap](#roadmap)
 
@@ -31,10 +37,7 @@ SentinelGo is a **Go-based cybersecurity platform** that ingests raw security lo
 > Version 1.0 is built on **deterministic rule-based detection**. The architecture is explicitly designed for AI-assisted behavioural analytics in future releases.
 
 ```
-Raw Logs  ──►  Collect  ──►  Parse  ──►  Detect  ──►  Score  ──►  Harden  ──►  Report
-               (syslog       (normalize   (8 rules,    (weighted    (CIS        (HTML +
-                Windows       events)      MITRE        algorithm)   checks)     JSON)
-                XML)                       mapped)
+  Raw Logs ──► Collect ──► Parse ──► Detect ──► Score ──► Harden ──► Report
 ```
 
 ---
@@ -231,60 +234,106 @@ Validate with: `sentinelgo rules validate`
 
 ## Architecture
 
+### System Layers
+
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                          CLI  (Cobra)                                │
-│          analyze · scan · harden · rules · validate · version        │
-└───────────────────────────┬─────────────────────────────────────────┘
-                            │
-            ┌───────────────▼───────────────┐
-            │       Engine Controller        │
-            └──┬────────┬────────┬──────────┘
-               │        │        │
-    ┌──────────▼──┐ ┌───▼────┐ ┌─▼──────────┐ ┌─────────────┐
-    │  Collector  │ │ Parser │ │  Detection  │ │  Hardening  │
-    │             │ │        │ │   Engine    │ │   Engine    │
-    │  syslog     │ │syslog  │ │             │ │             │
-    │  win kv     │ │win kv  │ │  8 rules    │ │  CIS checks │
-    │  win xml    │ │win xml │ │  + dynamic  │ │  Win+Linux  │
-    └─────────────┘ └────────┘ └──────┬──────┘ └──────┬──────┘
-                                      │               │
-                            ┌─────────▼──────┐        │
-                            │ Scoring Engine │        │
-                            │                │        │
-                            │ severity×0.4   │        │
-                            │ confidence×0.3 │        │
-                            │ frequency×0.2  │        │
-                            │ context×0.1    │        │
-                            └────────┬───────┘        │
-                                     │                │
-                            ┌────────▼────────────────▼──┐
-                            │       Reporter              │
-                            │   JSON report · HTML report │
-                            └─────────────────────────────┘
+  ╔═══════════════════════════════════════════════════════════════════╗
+  ║                        CLI  ·  Cobra                             ║
+  ║         analyze  ·  scan  ·  harden  ·  rules  ·  version       ║
+  ╠═══════════════════════════════════════════════════════════════════╣
+  ║                                                                   ║
+  ║   ┌─────────────┐  ┌─────────────┐  ┌─────────────────────────┐ ║
+  ║   │  Collector  │  │   Parser    │  │    Detection Engine     │ ║
+  ║   │─────────────│  │─────────────│  │─────────────────────────│ ║
+  ║   │ syslog      │  │ syslog      │  │ 8 built-in rules        │ ║
+  ║   │ windows kv  │──│ windows kv  │──│ YAML dynamic rules      │ ║
+  ║   │ windows xml │  │ windows xml │  │ MITRE ATT&CK mapping    │ ║
+  ║   └─────────────┘  └─────────────┘  └────────────┬────────────┘ ║
+  ║                                                   │              ║
+  ║   ┌─────────────────────────────┐  ┌─────────────▼────────────┐ ║
+  ║   │      Hardening Engine       │  │     Scoring Engine       │ ║
+  ║   │─────────────────────────────│  │──────────────────────────│ ║
+  ║   │ CIS-WIN-001  Firewall       │  │ severity   × 0.40        │ ║
+  ║   │ CIS-WIN-004  Audit Policy   │  │ confidence × 0.30        │ ║
+  ║   │ CIS-WIN-006  Password Len   │  │ frequency  × 0.20        │ ║
+  ║   │ CIS-LNX-002  SSH Root Login │  │ context    × 0.10        │ ║
+  ║   └──────────────┬──────────────┘  └─────────────┬────────────┘ ║
+  ║                  │                               │              ║
+  ║   ┌──────────────▼───────────────────────────────▼────────────┐ ║
+  ║   │                       Reporter                             │ ║
+  ║   │          reports/scan-<id>.json  ·  scan-<id>.html        │ ║
+  ║   └────────────────────────────────────────────────────────────┘ ║
+  ║                                                                   ║
+  ╠═══════════════════════════════════════════════════════════════════╣
+  ║          Config  ·  Logger (zap)  ·  Models  ·  Errors           ║
+  ╚═══════════════════════════════════════════════════════════════════╝
 ```
 
 ### Analysis Pipeline
 
 ```
-  ┌──────────┐
-  │ Log File │
-  └────┬─────┘
-       │
-  [1/5]│ Collect ──── FileCollector reads lines, detects format
-       │
-  [2/5]│ Parse ─────── Normalize to Event{category, action, user, host, outcome}
-       │
-  [3/5]│ Detect ────── 8 rules × all events → []Finding{MITRE, evidence, severity}
-       │
-  [4/5]│ Score ─────── Weighted risk score per finding → overall risk (0–100)
-       │
-  [5/5]│ Harden ────── CIS checks → []HardeningFinding{status, remediation}
-       │
-  ┌────▼──────────────────────┐
-  │  reports/scan-<id>.json   │
-  │  reports/scan-<id>.html   │
-  └───────────────────────────┘
+  ┌─────────────────────────────────────────────────────────────────┐
+  │                        INPUT  LOG  FILE                         │
+  │              syslog  /  windows event log  /  xml               │
+  └───────────────────────────────┬─────────────────────────────────┘
+                                  │
+           ┌──────────────────────▼──────────────────────┐
+    1 / 5  │  COLLECT                                     │
+           │  FileCollector → []RawEvent{line, format}    │
+           └──────────────────────┬──────────────────────┘
+                                  │
+           ┌──────────────────────▼──────────────────────┐
+    2 / 5  │  PARSE                                       │
+           │  Normalize → []Event{user, host, category,   │
+           │                      action, outcome, meta}  │
+           └──────────────────────┬──────────────────────┘
+                                  │
+           ┌──────────────────────▼──────────────────────┐
+    3 / 5  │  DETECT                                      │
+           │  8 rules × events → []Finding               │
+           │  each Finding carries MITRE technique+tactic │
+           │  + evidence events + recommendations         │
+           └──────────────────────┬──────────────────────┘
+                                  │
+           ┌──────────────────────▼──────────────────────┐
+    4 / 5  │  SCORE                                       │
+           │  weighted formula → RiskScore per finding    │
+           │  OverallRisk = max×0.6 + avg×0.4  (0–100)   │
+           └──────────────────────┬──────────────────────┘
+                                  │
+           ┌──────────────────────▼──────────────────────┐
+    5 / 5  │  HARDEN   (skippable)                        │
+           │  CIS checks → []HardeningFinding             │
+           │  score = passed / total × 100                │
+           └──────────────────────┬──────────────────────┘
+                                  │
+  ┌───────────────────────────────▼─────────────────────────────────┐
+  │                          REPORTS                                 │
+  │   reports/scan-<id>.json          reports/scan-<id>.html        │
+  └─────────────────────────────────────────────────────────────────┘
+```
+
+### Data Flow
+
+```
+  Raw line          RawEvent             Event
+  ─────────         ────────────────     ────────────────────────────
+  "Jul 28 …"   ──►  line:   "Jul 28…"  ──►  category:  authentication
+                    source: auth.log        action:    login
+                    format: syslog          outcome:   failure
+                                            user:      admin
+                                            host:      webserver
+                                            timestamp: 2025-07-28 08:23
+                                            metadata:  {reason: invalid_user}
+
+  Event set         Finding                ScanResult
+  ─────────         ────────────────────   ─────────────────────────
+  []Event      ──►  rule:    DET-001  ──►  scan_id:    scan-178531
+                    mitre:   T1110         risk_score: 72.9
+                    severity: high         findings:   6
+                    score:   78.4          critical:   0
+                    evidence: [6 events]   high:       3
+                    recs:    [4 items]     medium:     3
 ```
 
 ---
