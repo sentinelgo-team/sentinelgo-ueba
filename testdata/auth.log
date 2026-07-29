@@ -1,0 +1,22 @@
+Jul 28 08:23:01 webserver sshd[12345]: Failed password for admin from 192.168.1.100 port 22 ssh2
+Jul 28 08:23:05 webserver sshd[12346]: Failed password for admin from 192.168.1.100 port 22 ssh2
+Jul 28 08:23:09 webserver sshd[12347]: Failed password for admin from 192.168.1.100 port 22 ssh2
+Jul 28 08:23:14 webserver sshd[12348]: Failed password for admin from 192.168.1.100 port 22 ssh2
+Jul 28 08:23:18 webserver sshd[12349]: Failed password for admin from 192.168.1.100 port 22 ssh2
+Jul 28 08:23:22 webserver sshd[12350]: Failed password for admin from 192.168.1.100 port 22 ssh2
+Jul 28 08:25:01 webserver sshd[12351]: Accepted password for admin from 192.168.1.100 port 22 ssh2
+Jul 28 08:25:03 webserver sshd[12352]: session opened for user admin
+Jul 28 09:01:00 webserver sudo[13001]: admin : TTY=pts/0 ; PWD=/root ; USER=root ; COMMAND=/bin/bash
+Jul 28 09:15:00 webserver useradd[13100]: new user: name=backdoor, UID=1001, GID=1001
+Jul 28 10:00:01 dbserver sshd[14001]: Failed password for invalid user test from 10.0.0.50 port 22 ssh2
+Jul 28 10:00:03 dbserver sshd[14002]: Failed password for invalid user test from 10.0.0.50 port 22 ssh2
+Jul 28 10:00:05 dbserver sshd[14003]: Failed password for invalid user test from 10.0.0.50 port 22 ssh2
+Jul 28 10:30:00 dbserver sshd[14100]: Accepted password for dbadmin from 10.0.0.1 port 22 ssh2
+Jul 28 11:00:00 fileserver sshd[15001]: Failed password for root from 172.16.0.5 port 22 ssh2
+Jul 28 11:00:02 fileserver sshd[15002]: Failed password for root from 172.16.0.5 port 22 ssh2
+Jul 28 11:00:04 fileserver sshd[15003]: Failed password for root from 172.16.0.5 port 22 ssh2
+Jul 28 11:00:06 fileserver sshd[15004]: Failed password for root from 172.16.0.5 port 22 ssh2
+Jul 28 11:00:08 fileserver sshd[15005]: Failed password for root from 172.16.0.5 port 22 ssh2
+Jul 28 11:00:10 fileserver sshd[15006]: Failed password for root from 172.16.0.5 port 22 ssh2
+Jul 28 11:00:12 fileserver sshd[15007]: Failed password for root from 172.16.0.5 port 22 ssh2
+Jul 28 12:00:00 webserver systemd[1]: Started Session 42 of user admin.

@@ -1,0 +1,23 @@
+id: "DET-007"
+name: "Potential Lateral Movement"
+description: "A single user authenticating to multiple distinct hosts within a short period."
+enabled: true
+severity: "high"
+confidence: 0.70
+
+mitre:
+  technique: "T1021"
+  tactic: "Lateral Movement"
+
+conditions:
+  event_category: "authentication"
+  event_outcome: "success"
+  group_by: "user"
+  distinct_hosts: 3
+  window_minutes: 15
+
+recommendations:
+  - "Investigate whether the user has legitimate access to all target hosts."
+  - "Review session durations and commands executed."
+  - "Check for data staging or exfiltration."
+  - "Correlate with file access logs on target systems."

@@ -1,0 +1,22 @@
+id: "DET-006"
+name: "Rapid-Fire Authentication"
+description: "Extremely high rate of authentication attempts indicates automated tooling."
+enabled: true
+severity: "critical"
+confidence: 0.90
+
+mitre:
+  technique: "T1110.001"
+  tactic: "Credential Access"
+
+conditions:
+  event_category: "authentication"
+  event_outcome: "failure"
+  threshold: 10
+  window_seconds: 60
+
+recommendations:
+  - "Immediately investigate the source of rapid authentication attempts."
+  - "Implement rate limiting or CAPTCHA."
+  - "Block the source IP temporarily."
+  - "Check for successful authentication following the burst."

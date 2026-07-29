@@ -1,0 +1,45 @@
+application:
+  name: "SentinelGo"
+  version: "1.0.0"
+  environment: "development"
+
+logging:
+  level: "info"
+  format: "text"
+  output: "console"
+  file_path: "logs/sentinelgo.log"
+
+collector:
+  sources:
+    - type: "file"
+      path: "testdata/auth.log"
+      format: "syslog"
+  batch_size: 1000
+  timeout_seconds: 30
+
+detection:
+  rules_path: "rules/"
+  enabled: true
+  severity_threshold: "low"
+
+scoring:
+  algorithm: "weighted"
+  max_score: 100
+  weights:
+    severity: 0.4
+    confidence: 0.3
+    frequency: 0.2
+    context: 0.1
+
+reporting:
+  output_dir: "reports/"
+  formats:
+    - "json"
+    - "html"
+  include_evidence: true
+  include_recommendations: true
+
+hardening:
+  enabled: true
+  benchmarks:
+    - "cis-windows-11"

@@ -1,0 +1,21 @@
+id: "DET-002"
+name: "Privilege Escalation Attempt"
+description: "Detected attempt to elevate privileges via sudo or similar mechanism."
+enabled: true
+severity: "high"
+confidence: 0.75
+
+mitre:
+  technique: "T1548"
+  tactic: "Privilege Escalation"
+
+conditions:
+  event_category: "privilege"
+  event_action: "escalation"
+  threshold: 1
+  window_minutes: 0
+
+recommendations:
+  - "Verify that the user is authorized for elevated privileges."
+  - "Review command history for suspicious activity."
+  - "Check if this escalation follows failed authentication attempts."

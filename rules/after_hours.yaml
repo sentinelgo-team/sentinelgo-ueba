@@ -1,0 +1,22 @@
+id: "DET-004"
+name: "After-Hours Authentication"
+description: "Successful authentication detected outside normal business hours."
+enabled: true
+severity: "medium"
+confidence: 0.60
+
+mitre:
+  technique: "T1078"
+  tactic: "Initial Access"
+
+conditions:
+  event_category: "authentication"
+  event_outcome: "success"
+  time_constraint:
+    after_hour: 22
+    before_hour: 6
+
+recommendations:
+  - "Verify the user has a legitimate reason for after-hours access."
+  - "Correlate with VPN logs and physical access records."
+  - "Check for data exfiltration following this session."

@@ -1,0 +1,46 @@
+# Binaries
+/sentinelgo
+sentinelgo.exe
+*.exe
+*.dll
+*.so
+*.dylib
+build/
+dist/
+
+# Reports (generated output)
+reports/*.json
+reports/*.html
+
+# Test artifacts
+*.test
+*.out
+coverage.out
+coverage.html
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+!testdata/*.log
+
+# Generated test data (large files)
+testdata/large_*.log
+testdata/stress_*.log
+
+# Environment
+.env
+.env.local
+
+# Dependencies (vendored)
+vendor/

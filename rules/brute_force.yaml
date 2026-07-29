@@ -1,0 +1,23 @@
+id: "DET-001"
+name: "Brute Force Authentication"
+description: "Multiple failed login attempts for a single account within a short time window."
+enabled: true
+severity: "high"
+confidence: 0.85
+
+mitre:
+  technique: "T1110"
+  tactic: "Credential Access"
+
+conditions:
+  event_category: "authentication"
+  event_outcome: "failure"
+  group_by: "user"
+  threshold: 5
+  window_minutes: 5
+
+recommendations:
+  - "Investigate the targeted account for potential compromise."
+  - "Review source IP addresses for known malicious activity."
+  - "Consider temporary account lockout if attacks persist."
+  - "Enable multi-factor authentication."

@@ -1,0 +1,16 @@
+EventID=4625, Timestamp=2025-01-15T08:30:01Z, User=admin, Computer=WORKSTATION01, Status=failure, SourceIP=192.168.1.200
+EventID=4625, Timestamp=2025-01-15T08:30:02Z, User=admin, Computer=WORKSTATION01, Status=failure, SourceIP=192.168.1.200
+EventID=4625, Timestamp=2025-01-15T08:30:03Z, User=admin, Computer=WORKSTATION01, Status=failure, SourceIP=192.168.1.200
+EventID=4625, Timestamp=2025-01-15T08:30:04Z, User=admin, Computer=WORKSTATION01, Status=failure, SourceIP=192.168.1.200
+EventID=4625, Timestamp=2025-01-15T08:30:05Z, User=admin, Computer=WORKSTATION01, Status=failure, SourceIP=192.168.1.200
+EventID=4625, Timestamp=2025-01-15T08:30:06Z, User=admin, Computer=WORKSTATION01, Status=failure, SourceIP=192.168.1.200
+EventID=4624, Timestamp=2025-01-15T08:31:00Z, User=admin, Computer=WORKSTATION01, Status=success, SourceIP=192.168.1.200
+EventID=4672, Timestamp=2025-01-15T08:31:01Z, User=admin, Computer=WORKSTATION01, Status=success
+EventID=4720, Timestamp=2025-01-15T08:35:00Z, User=backdoor_acct, Computer=WORKSTATION01, SubjectUser=admin
+EventID=4728, Timestamp=2025-01-15T08:35:30Z, User=backdoor_acct, Computer=WORKSTATION01, GroupName=Administrators
+EventID=4625, Timestamp=2025-01-15T09:00:00Z, User=svc_backup, Computer=SERVER01, Status=failure, SourceIP=10.0.0.50
+EventID=4625, Timestamp=2025-01-15T09:00:01Z, User=svc_deploy, Computer=SERVER01, Status=failure, SourceIP=10.0.0.50
+EventID=4625, Timestamp=2025-01-15T09:00:02Z, User=svc_monitor, Computer=SERVER01, Status=failure, SourceIP=10.0.0.50
+EventID=4625, Timestamp=2025-01-15T09:00:03Z, User=admin2, Computer=SERVER01, Status=failure, SourceIP=10.0.0.50
+EventID=4625, Timestamp=2025-01-15T09:00:04Z, User=root, Computer=SERVER01, Status=failure, SourceIP=10.0.0.50
+EventID=4624, Timestamp=2025-01-15T23:15:00Z, User=deploy, Computer=WEBSERVER01, Status=success, SourceIP=172.16.0.5

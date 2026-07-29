@@ -1,0 +1,23 @@
+id: "DET-003"
+name: "Invalid User Enumeration"
+description: "Multiple login attempts with non-existent usernames suggest account enumeration."
+enabled: true
+severity: "medium"
+confidence: 0.80
+
+mitre:
+  technique: "T1078"
+  tactic: "Initial Access"
+
+conditions:
+  event_category: "authentication"
+  event_outcome: "failure"
+  metadata_match:
+    reason: "invalid_user"
+  threshold: 3
+  window_minutes: 10
+
+recommendations:
+  - "Review source IPs for scanning activity."
+  - "Consider implementing account lockout policies."
+  - "Monitor for successful logins following enumeration."

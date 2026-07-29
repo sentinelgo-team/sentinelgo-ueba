@@ -1,0 +1,23 @@
+id: "DET-005"
+name: "Account Enumeration"
+description: "Failed login attempts against multiple distinct accounts suggest credential stuffing."
+enabled: true
+severity: "high"
+confidence: 0.85
+
+mitre:
+  technique: "T1110.004"
+  tactic: "Credential Access"
+
+conditions:
+  event_category: "authentication"
+  event_outcome: "failure"
+  group_by: "source"
+  distinct_targets: 5
+  window_minutes: 5
+
+recommendations:
+  - "Block or investigate the source."
+  - "Review all targeted accounts for compromise."
+  - "Implement rate limiting on authentication endpoints."
+  - "Consider IP-based lockout."
