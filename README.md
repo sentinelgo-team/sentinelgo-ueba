@@ -1,30 +1,32 @@
+# SentinelGo
+
 <div align="center">
 
 ```
- ╔══════════════════════════════════════════════════════════════════════╗
- ║                                                                      ║
- ║   ███████╗███████╗███╗   ██╗████████╗██╗███╗   ██╗███████╗██╗       ║
- ║   ██╔════╝██╔════╝████╗  ██║╚══██╔══╝██║████╗  ██║██╔════╝██║       ║
- ║   ███████╗█████╗  ██╔██╗ ██║   ██║   ██║██╔██╗ ██║█████╗  ██║       ║
- ║   ╚════██║██╔══╝  ██║╚██╗██║   ██║   ██║██║╚██╗██║██╔══╝  ██║       ║
- ║   ███████║███████╗██║ ╚████║   ██║   ██║██║ ╚████║███████╗███████╗  ║
- ║   ╚══════╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝  ║
- ║                                                                      ║
- ║            G  O  —  S  E  C  U  R  I  T  Y  —  P  L  A  T  F  O  R  M  ║
- ║                                                                      ║
- ╚══════════════════════════════════════════════════════════════════════╝
+  ┌──────────────────────────────────────────────────────────────────────┐
+  │                                                                      │
+  │    ░██████╗███████╗███╗   ██╗████████╗██╗███╗   ██╗███████╗██╗      │
+  │    ██╔════╝██╔════╝████╗  ██║╚══██╔══╝██║████╗  ██║██╔════╝██║      │
+  │    ╚█████╗ █████╗  ██╔██╗ ██║   ██║   ██║██╔██╗ ██║█████╗  ██║      │
+  │     ╚═══██╗██╔══╝  ██║╚██╗██║   ██║   ██║██║╚██╗██║██╔══╝  ██║      │
+  │    ██████╔╝███████╗██║ ╚████║   ██║   ██║██║ ╚████║███████╗███████╗  │
+  │    ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝  │
+  │                                                                      │
+  │                  G o  ·  S e c u r i t y  ·  P l a t f o r m       │
+  │                                                                      │
+  └──────────────────────────────────────────────────────────────────────┘
 ```
 
 **Insider Threat Detection · Risk Scoring · System Hardening · MITRE ATT&CK**
 
-[![Go Version](https://img.shields.io/badge/Go-1.22+-00ADD8?style=flat&logo=go&logoColor=white)](https://go.dev)
-[![License](https://img.shields.io/badge/License-MIT-22c55e?style=flat)](LICENSE)
-[![Tests](https://img.shields.io/badge/Tests-46%20passing-22c55e?style=flat)](.)
-[![Version](https://img.shields.io/badge/Version-1.0.0-6366f1?style=flat)](CHANGELOG.md)
-[![Platform](https://img.shields.io/badge/Windows%20%7C%20Linux%20%7C%20macOS-supported-0ea5e9?style=flat)](.)
-[![MITRE](https://img.shields.io/badge/MITRE%20ATT%26CK-8%20techniques-ef4444?style=flat)](https://attack.mitre.org/)
+[![Go](https://img.shields.io/badge/Go-1.22+-00ADD8?style=flat-square&logo=go&logoColor=white)](https://go.dev)
+[![License](https://img.shields.io/badge/License-MIT-22c55e?style=flat-square)](LICENSE)
+[![Tests](https://img.shields.io/badge/Tests-46%20passing-22c55e?style=flat-square)](tests/)
+[![Version](https://img.shields.io/badge/Version-1.0.0-6366f1?style=flat-square)](CHANGELOG.md)
+[![Platform](https://img.shields.io/badge/Windows%20%7C%20Linux%20%7C%20macOS-0ea5e9?style=flat-square)](.)
+[![MITRE](https://img.shields.io/badge/MITRE%20ATT%26CK-8%20techniques-ef4444?style=flat-square)](https://attack.mitre.org/)
 
-[Features](#features) · [Quick Start](#quick-start) · [Installation](#installation) · [Detection Rules](#detection-rules) · [Architecture](#architecture) · [Performance](#performance) · [Roadmap](#roadmap)
+[Features](#features) · [Quick Start](#quick-start) · [Installation](#installation) · [Detection Rules](#detection-rules) · [Architecture](#architecture) · [Performance](#performance) · [Roadmap](#roadmap) · [Docs](docs/CLI.md)
 
 </div>
 
@@ -32,13 +34,9 @@
 
 ## What is SentinelGo?
 
-SentinelGo is a **Go-based cybersecurity platform** that ingests raw security logs, detects insider threat patterns, assesses system hardening posture, scores risk using a weighted algorithm, and generates professional HTML and JSON reports — all in a single binary with zero runtime dependencies.
+SentinelGo is a **Go-based cybersecurity platform** that ingests raw security logs, detects insider threat patterns, assesses system hardening posture, calculates risk scores, and generates professional HTML and JSON reports — delivered as a single binary with zero runtime dependencies.
 
-> Version 1.0 is built on **deterministic rule-based detection**. The architecture is explicitly designed for AI-assisted behavioural analytics in future releases.
-
-```
-  Raw Logs ──► Collect ──► Parse ──► Detect ──► Score ──► Harden ──► Report
-```
+> Version 1.0 is built on **deterministic rule-based detection**. The architecture is explicitly designed to support AI-assisted behavioural analytics in future releases.
 
 ---
 
@@ -48,61 +46,60 @@ SentinelGo is a **Go-based cybersecurity platform** that ingests raw security lo
 <tr>
 <td width="50%">
 
-### Threat Detection
+**Threat Detection**
 - 8 built-in detection rules
-- YAML rule engine — no recompile needed
-- MITRE ATT&CK technique mapping
-- Time-window clustering & threshold logic
-- After-hours, lateral movement, service account abuse detection
+- YAML rule engine — add rules without recompiling
+- MITRE ATT&CK technique mapping on every finding
+- Time-window clustering, threshold logic, user grouping
 
 </td>
 <td width="50%">
 
-### Risk Scoring
+**Risk Scoring**
 - Weighted algorithm: severity × confidence × frequency × context
-- Per-finding and aggregate risk scores (0–100)
+- Per-finding scores + aggregate overall risk (0–100)
 - Configurable weights via YAML
-- Finding severity: Critical / High / Medium / Low
+- Severity tiers: Critical / High / Medium / Low
 
 </td>
 </tr>
 <tr>
 <td width="50%">
 
-### System Hardening
-- CIS Benchmark-aligned checks
-- Platform-adaptive: Windows + Linux
-- Firewall, audit policy, password policy, SSH config
-- Remediation commands for every failed check
+**System Hardening**
+- CIS Benchmark-aligned security checks
+- Platform-adaptive: Windows and Linux
+- Firewall, audit policy, password policy, SSH checks
+- Remediation commands for every failed item
 
 </td>
 <td width="50%">
 
-### Professional Reporting
+**Professional Reporting**
 - Dark-theme HTML executive report
 - Machine-readable JSON output
-- Evidence-backed findings
-- MITRE technique references per finding
+- Evidence-backed findings per detection
+- MITRE tactic and technique per finding
 
 </td>
 </tr>
 <tr>
 <td width="50%">
 
-### Multi-Format Log Parsing
+**Multi-Format Log Parsing**
 - Linux syslog (`auth.log`, `messages`)
-- Windows Event Log (key-value)
-- Windows EVTX (XML format)
-- 16 Windows Event IDs mapped
+- Windows Event Log key-value format
+- Windows EVTX XML format
+- 16 Windows Event IDs mapped to categories
 
 </td>
 <td width="50%">
 
-### Performance
-- 10,000 events analyzed in **< 300ms**
+**Performance**
+- 10,000 events analyzed in **< 300 ms**
 - Single binary, zero runtime dependencies
 - Cross-platform: Windows / Linux / macOS
-- Minimal memory footprint
+- Benchmarked collection, parsing, detection, scoring
 
 </td>
 </tr>
@@ -113,20 +110,20 @@ SentinelGo is a **Go-based cybersecurity platform** that ingests raw security lo
 ## Quick Start
 
 ```bash
-# 1. Build
+# Build
 go build -o sentinelgo ./cmd/sentinelgo/
 
-# 2. Analyze a log file
+# Analyze a log file (full pipeline)
 ./sentinelgo analyze testdata/auth.log
 
-# 3. Standalone hardening check
+# Standalone hardening assessment
 ./sentinelgo harden
 
-# 4. List loaded detection rules
+# List all loaded detection rules
 ./sentinelgo rules list
 ```
 
-Reports are written to `reports/` as both `.html` and `.json`.
+Reports are written to `reports/` as `scan-<id>.html` and `scan-<id>.json`.
 
 ---
 
@@ -146,7 +143,7 @@ go build -o sentinelgo ./cmd/sentinelgo/
 Download from the [Releases](https://github.com/sentinelgo-team/sentinelgo-ueba/releases) page.
 
 | Platform | Architecture | Binary |
-|:--------:|:------------:|:------:|
+|:--------:|:------------:|:------|
 | Windows  | amd64 | `sentinelgo-windows-amd64.exe` |
 | Linux    | amd64 | `sentinelgo-linux-amd64` |
 | macOS    | amd64 | `sentinelgo-darwin-amd64` |
@@ -154,9 +151,9 @@ Download from the [Releases](https://github.com/sentinelgo-team/sentinelgo-ueba/
 ### Using Make
 
 ```bash
-make build          # current platform
-make release        # all three platforms at once
-make install        # copy to $GOPATH/bin
+make build      # build for current platform  →  build/sentinelgo
+make release    # build all three platforms   →  dist/
+make install    # install to $GOPATH/bin
 ```
 
 ---
@@ -171,21 +168,19 @@ make install        # copy to $GOPATH/bin
 | `sentinelgo rules list` | List all loaded detection rules |
 | `sentinelgo rules validate` | Validate YAML rule files |
 | `sentinelgo validate` | Validate configuration file |
-| `sentinelgo version` | Show version, platform, build info |
+| `sentinelgo version` | Show version, commit, platform |
 
-**Flags:**
+**Global flag:** `--config / -c <path>` — custom config file (default: `configs/sentinelgo.yaml`)  
+**Analyze flag:** `--skip-hardening` — skip CIS checks
 
-| Flag | Command | Description |
-|:-----|:--------|:------------|
-| `--skip-hardening` | analyze / scan | Skip CIS checks |
-| `--config` / `-c` | all | Custom config file path |
+Full reference: [docs/CLI.md](docs/CLI.md)
 
 ---
 
 ## Detection Rules
 
-| Rule ID | MITRE Technique | Tactic | Description | Severity |
-|:-------:|:---------------:|:------:|:------------|:--------:|
+| ID | Technique | Tactic | Rule | Severity |
+|:--:|:---------:|:------:|:-----|:--------:|
 | DET-001 | T1110 | Credential Access | Brute Force Authentication | High |
 | DET-002 | T1548 | Privilege Escalation | Privilege Escalation via sudo | High |
 | DET-003 | T1078 | Initial Access | Invalid User Enumeration | Medium |
@@ -195,145 +190,143 @@ make install        # copy to $GOPATH/bin
 | DET-007 | T1021 | Lateral Movement | Multi-Host Authentication Pattern | High |
 | DET-008 | T1078.001 | Persistence | Service Account Interactive Login | High |
 
-### Writing Custom Rules
+### Custom Rules
 
-Drop a YAML file into `rules/` — no restart or recompile needed:
+Drop a `.yaml` file in `rules/` — no restart or recompile needed:
 
 ```yaml
 id: "CUSTOM-001"
 name: "Off-Hours Database Access"
-description: "Database service account used outside maintenance window."
+description: "Database account used outside maintenance window."
 enabled: true
 severity: "high"
 confidence: 0.85
-
 mitre:
   technique: "T1078"
   tactic: "Initial Access"
-
 conditions:
   event_category: "authentication"
   event_outcome: "success"
-  user_list:
-    - "postgres"
-    - "mysql"
-    - "mongodb"
+  user_list: ["postgres", "mysql", "mongodb"]
   time_constraint:
     after_hour: 23
     before_hour: 5
-
 recommendations:
   - "Verify whether scheduled maintenance was planned."
-  - "Review all queries executed during this session."
+  - "Review queries executed during this session."
   - "Rotate credentials if access was unauthorized."
 ```
 
-Validate with: `sentinelgo rules validate`
+Validate: `sentinelgo rules validate`
 
 ---
 
 ## Architecture
 
-### System Layers
+### System Overview
 
 ```
-  ╔═══════════════════════════════════════════════════════════════════╗
-  ║                        CLI  ·  Cobra                             ║
-  ║         analyze  ·  scan  ·  harden  ·  rules  ·  version       ║
-  ╠═══════════════════════════════════════════════════════════════════╣
-  ║                                                                   ║
-  ║   ┌─────────────┐  ┌─────────────┐  ┌─────────────────────────┐ ║
-  ║   │  Collector  │  │   Parser    │  │    Detection Engine     │ ║
-  ║   │─────────────│  │─────────────│  │─────────────────────────│ ║
-  ║   │ syslog      │  │ syslog      │  │ 8 built-in rules        │ ║
-  ║   │ windows kv  │──│ windows kv  │──│ YAML dynamic rules      │ ║
-  ║   │ windows xml │  │ windows xml │  │ MITRE ATT&CK mapping    │ ║
-  ║   └─────────────┘  └─────────────┘  └────────────┬────────────┘ ║
-  ║                                                   │              ║
-  ║   ┌─────────────────────────────┐  ┌─────────────▼────────────┐ ║
-  ║   │      Hardening Engine       │  │     Scoring Engine       │ ║
-  ║   │─────────────────────────────│  │──────────────────────────│ ║
-  ║   │ CIS-WIN-001  Firewall       │  │ severity   × 0.40        │ ║
-  ║   │ CIS-WIN-004  Audit Policy   │  │ confidence × 0.30        │ ║
-  ║   │ CIS-WIN-006  Password Len   │  │ frequency  × 0.20        │ ║
-  ║   │ CIS-LNX-002  SSH Root Login │  │ context    × 0.10        │ ║
-  ║   └──────────────┬──────────────┘  └─────────────┬────────────┘ ║
-  ║                  │                               │              ║
-  ║   ┌──────────────▼───────────────────────────────▼────────────┐ ║
-  ║   │                       Reporter                             │ ║
-  ║   │          reports/scan-<id>.json  ·  scan-<id>.html        │ ║
-  ║   └────────────────────────────────────────────────────────────┘ ║
-  ║                                                                   ║
-  ╠═══════════════════════════════════════════════════════════════════╣
-  ║          Config  ·  Logger (zap)  ·  Models  ·  Errors           ║
-  ╚═══════════════════════════════════════════════════════════════════╝
+  ╔══════════════════════════════════════════════════════════════════════╗
+  ║                    S e n t i n e l G o                              ║
+  ╠══════════════════════════════════════════════════════════════════════╣
+  ║                                                                      ║
+  ║   CLI  (Cobra)                                                       ║
+  ║   ├── analyze / scan    full 5-phase pipeline                        ║
+  ║   ├── harden            standalone CIS assessment                   ║
+  ║   ├── rules list        show loaded rules                           ║
+  ║   ├── rules validate    check rule YAML files                       ║
+  ║   ├── validate          check config file                           ║
+  ║   └── version           build metadata                              ║
+  ║                                                                      ║
+  ╠═══════════════╦═══════════════╦══════════════════╦═══════════════════╣
+  ║               ║               ║                  ║                   ║
+  ║  Collector    ║  Parser       ║  Detection       ║  Hardening        ║
+  ║  ───────────  ║  ───────────  ║  ─────────────   ║  ─────────────   ║
+  ║  syslog       ║  syslog       ║  8 built-in      ║  CIS-WIN-001      ║
+  ║  windows kv   ║  windows kv   ║  YAML dynamic    ║  CIS-WIN-004      ║
+  ║  windows xml  ║  windows xml  ║  MITRE mapped    ║  CIS-LNX-002      ║
+  ║               ║               ║                  ║  CIS-LNX-003      ║
+  ╠═══════════════╩═══════════════╬══════════════════╩═══════════════════╣
+  ║                               ║                                      ║
+  ║  Scoring Engine               ║  Reporter                            ║
+  ║  ────────────────────────     ║  ──────────────────────────────      ║
+  ║  severity   × 0.40            ║  reports/scan-<id>.json              ║
+  ║  confidence × 0.30            ║  reports/scan-<id>.html              ║
+  ║  frequency  × 0.20            ║  dark-theme executive dashboard      ║
+  ║  context    × 0.10            ║                                      ║
+  ╠═══════════════════════════════╩══════════════════════════════════════╣
+  ║  Foundation:  Config  ·  Logger (zap)  ·  Models  ·  Errors          ║
+  ╚══════════════════════════════════════════════════════════════════════╝
 ```
 
 ### Analysis Pipeline
 
 ```
-  ┌─────────────────────────────────────────────────────────────────┐
-  │                        INPUT  LOG  FILE                         │
-  │              syslog  /  windows event log  /  xml               │
-  └───────────────────────────────┬─────────────────────────────────┘
-                                  │
-           ┌──────────────────────▼──────────────────────┐
-    1 / 5  │  COLLECT                                     │
-           │  FileCollector → []RawEvent{line, format}    │
-           └──────────────────────┬──────────────────────┘
-                                  │
-           ┌──────────────────────▼──────────────────────┐
-    2 / 5  │  PARSE                                       │
-           │  Normalize → []Event{user, host, category,   │
-           │                      action, outcome, meta}  │
-           └──────────────────────┬──────────────────────┘
-                                  │
-           ┌──────────────────────▼──────────────────────┐
-    3 / 5  │  DETECT                                      │
-           │  8 rules × events → []Finding               │
-           │  each Finding carries MITRE technique+tactic │
-           │  + evidence events + recommendations         │
-           └──────────────────────┬──────────────────────┘
-                                  │
-           ┌──────────────────────▼──────────────────────┐
-    4 / 5  │  SCORE                                       │
-           │  weighted formula → RiskScore per finding    │
-           │  OverallRisk = max×0.6 + avg×0.4  (0–100)   │
-           └──────────────────────┬──────────────────────┘
-                                  │
-           ┌──────────────────────▼──────────────────────┐
-    5 / 5  │  HARDEN   (skippable)                        │
-           │  CIS checks → []HardeningFinding             │
-           │  score = passed / total × 100                │
-           └──────────────────────┬──────────────────────┘
-                                  │
-  ┌───────────────────────────────▼─────────────────────────────────┐
-  │                          REPORTS                                 │
-  │   reports/scan-<id>.json          reports/scan-<id>.html        │
-  └─────────────────────────────────────────────────────────────────┘
+  ┌──────────────────────────────────────────────────────────────────┐
+  │  INPUT   ·   syslog  /  windows event log  /  windows xml        │
+  └─────────────────────────────┬────────────────────────────────────┘
+                                │
+           ┌─────────────────── ▼ ───────────────────┐
+    1 ─ 5  │  COLLECT                                 │
+           │  FileCollector reads file, detects format│
+           │  output → []RawEvent{ line, format }     │
+           └─────────────────────┬───────────────────┘
+                                 │
+           ┌─────────────────── ▼ ───────────────────┐
+    2 ─ 5  │  PARSE                                   │
+           │  Normalize each line to structured Event │
+           │  output → []Event{ user, host, category, │
+           │                    action, outcome, meta }│
+           └─────────────────────┬───────────────────┘
+                                 │
+           ┌─────────────────── ▼ ───────────────────┐
+    3 ─ 5  │  DETECT                                  │
+           │  8 rules × event set → []Finding         │
+           │  each Finding: MITRE · evidence · recs   │
+           └─────────────────────┬───────────────────┘
+                                 │
+           ┌─────────────────── ▼ ───────────────────┐
+    4 ─ 5  │  SCORE                                   │
+           │  weighted formula per finding (0–100)    │
+           │  OverallRisk = max×0.6 + avg×0.4         │
+           └─────────────────────┬───────────────────┘
+                                 │
+           ┌─────────────────── ▼ ───────────────────┐
+    5 ─ 5  │  HARDEN  (optional, --skip-hardening)    │
+           │  CIS checks → []HardeningFinding         │
+           │  compliance = passed / total × 100       │
+           └─────────────────────┬───────────────────┘
+                                 │
+  ┌──────────────────────────────▼───────────────────────────────────┐
+  │  OUTPUT  ·  reports/scan-<id>.json   +   scan-<id>.html          │
+  └──────────────────────────────────────────────────────────────────┘
 ```
 
 ### Data Flow
 
 ```
-  Raw line          RawEvent             Event
-  ─────────         ────────────────     ────────────────────────────
-  "Jul 28 …"   ──►  line:   "Jul 28…"  ──►  category:  authentication
-                    source: auth.log        action:    login
-                    format: syslog          outcome:   failure
-                                            user:      admin
-                                            host:      webserver
-                                            timestamp: 2025-07-28 08:23
-                                            metadata:  {reason: invalid_user}
+  ┌──────────────┐    ┌──────────────────────┐    ┌──────────────────────────┐
+  │  Raw Line    │    │  RawEvent            │    │  Event                   │
+  │─────────────-│    │──────────────────────│    │──────────────────────────│
+  │ "Jul 28      │ ──▶│ line:   "Jul 28 …"   │ ──▶│ category:  authentication│
+  │  08:23:01    │    │ source: auth.log      │    │ action:    login         │
+  │  sshd: Failed│    │ format: syslog        │    │ outcome:   failure       │
+  │  password    │    │ linenum: 1            │    │ user:      admin         │
+  │  for admin…" │    │                      │    │ host:      webserver      │
+  └──────────────┘    └──────────────────────┘    │ timestamp: 2025-07-28    │
+                                                  │ metadata:  reason=invalid│
+                                                  └──────────────────────────┘
 
-  Event set         Finding                ScanResult
-  ─────────         ────────────────────   ─────────────────────────
-  []Event      ──►  rule:    DET-001  ──►  scan_id:    scan-178531
-                    mitre:   T1110         risk_score: 72.9
-                    severity: high         findings:   6
-                    score:   78.4          critical:   0
-                    evidence: [6 events]   high:       3
-                    recs:    [4 items]     medium:     3
+  ┌──────────────┐    ┌──────────────────────┐    ┌──────────────────────────┐
+  │  []Event     │    │  Finding             │    │  ScanResult              │
+  │─────────────-│    │──────────────────────│    │──────────────────────────│
+  │ 22 events    │ ──▶│ rule_id:  DET-001    │ ──▶│ scan_id:   scan-1785317  │
+  │ from         │    │ mitre:    T1110       │    │ risk_score: 72.9         │
+  │ auth.log     │    │ severity: high        │    │ findings:  6             │
+  │              │    │ score:    78.4        │    │ critical:  0             │
+  │              │    │ evidence: [6 events]  │    │ high:      3             │
+  │              │    │ recs:     [4 items]   │    │ medium:    3             │
+  └──────────────┘    └──────────────────────┘    └──────────────────────────┘
 ```
 
 ---
@@ -345,74 +338,82 @@ sentinelgo-ueba/
 │
 ├── cmd/
 │   └── sentinelgo/
-│       └── main.go                  ← CLI entry point (7 commands)
+│       └── main.go                   CLI entry point — 7 commands
 │
 ├── internal/
 │   ├── collector/
-│   │   └── collector.go             ← File collection, format auto-detection
+│   │   └── collector.go              file reader, format auto-detection
+│   │
 │   ├── config/
-│   │   ├── config.go                ← YAML load, validation, env expansion
-│   │   └── config_test.go
+│   │   ├── config.go                 YAML loader, validation, env expansion
+│   │   └── config_test.go            4 tests
+│   │
 │   ├── detection/
-│   │   ├── engine.go                ← Rule registry (built-in + dynamic)
-│   │   ├── rules.go                 ← 8 built-in detection rules
-│   │   ├── loader.go                ← YAML rule file loader + validator
-│   │   ├── dynamic.go               ← Runtime rule evaluation engine
-│   │   ├── engine_test.go           ← 10 detection tests
-│   │   └── loader_test.go           ← 6 loader tests
+│   │   ├── engine.go                 rule registry, built-in + dynamic loader
+│   │   ├── rules.go                  8 built-in detection rules (Go)
+│   │   ├── loader.go                 YAML rule file loader and validator
+│   │   ├── dynamic.go                runtime evaluation engine for YAML rules
+│   │   ├── engine_test.go            10 tests
+│   │   └── loader_test.go            6 tests
+│   │
 │   ├── errors/
-│   │   └── errors.go                ← Structured error types
+│   │   └── errors.go                 structured error types with Kind field
+│   │
 │   ├── hardening/
-│   │   ├── hardening.go             ← CIS benchmark checks (Windows + Linux)
-│   │   └── hardening_test.go
+│   │   ├── hardening.go              CIS benchmark checks, Windows + Linux
+│   │   └── hardening_test.go         3 tests
+│   │
 │   ├── logger/
-│   │   └── logger.go                ← zap structured logging
+│   │   └── logger.go                 zap structured logging, console + file
+│   │
 │   ├── models/
-│   │   └── event.go                 ← Event, Finding, ScanResult, HardeningResult
+│   │   └── event.go                  Event · Finding · ScanResult · HardeningResult
+│   │
 │   ├── parser/
-│   │   ├── parser.go                ← Syslog, Windows KV, Windows XML parsing
-│   │   └── parser_test.go           ← 12 parser tests
+│   │   ├── parser.go                 syslog · windows kv · windows xml parsing
+│   │   └── parser_test.go            12 tests
+│   │
 │   ├── reporting/
-│   │   └── report.go                ← JSON + dark-theme HTML report generation
+│   │   └── report.go                 JSON and dark-theme HTML report generation
+│   │
 │   └── scoring/
-│       ├── scoring.go               ← Weighted risk scoring engine
-│       └── scoring_test.go          ← 6 scoring tests
+│       ├── scoring.go                weighted risk scoring engine
+│       └── scoring_test.go           6 tests
 │
 ├── configs/
-│   └── sentinelgo.yaml              ← Default configuration
+│   └── sentinelgo.yaml               default configuration file
 │
-├── rules/                           ← YAML detection rules (editable, hot-loadable)
-│   ├── brute_force.yaml             ← DET-001 · T1110
-│   ├── privilege_escalation.yaml    ← DET-002 · T1548
-│   ├── invalid_user.yaml            ← DET-003 · T1078
-│   ├── after_hours.yaml             ← DET-004 · T1078
-│   ├── account_enumeration.yaml     ← DET-005 · T1110.004
-│   ├── rapid_fire.yaml              ← DET-006 · T1110.001
-│   ├── lateral_movement.yaml        ← DET-007 · T1021
-│   └── service_account.yaml         ← DET-008 · T1078.001
+├── rules/                            YAML detection rules — edit without recompile
+│   ├── brute_force.yaml              DET-001 · T1110  · Brute Force
+│   ├── privilege_escalation.yaml     DET-002 · T1548  · Privilege Escalation
+│   ├── invalid_user.yaml             DET-003 · T1078  · Invalid User Enum
+│   ├── after_hours.yaml              DET-004 · T1078  · After-Hours Login
+│   ├── account_enumeration.yaml      DET-005 · T1110.004 · Account Enumeration
+│   ├── rapid_fire.yaml               DET-006 · T1110.001 · Rapid-Fire Auth
+│   ├── lateral_movement.yaml         DET-007 · T1021  · Lateral Movement
+│   └── service_account.yaml          DET-008 · T1078.001 · Service Account Abuse
 │
 ├── testdata/
-│   ├── auth.log                     ← Linux syslog sample (22 events)
-│   ├── windows_security.log         ← Windows Event Log sample (16 events)
-│   └── medium_auth.log              ← Synthetic dataset (1,000 events)
+│   ├── auth.log                      Linux syslog sample — 22 events
+│   ├── windows_security.log          Windows Event Log sample — 16 events
+│   └── medium_auth.log               synthetic dataset — 1,000 events
 │
 ├── tests/
-│   ├── integration_test.go          ← Full pipeline integration tests (5 tests)
-│   └── benchmark_test.go            ← Performance benchmarks (8 benchmarks)
+│   ├── integration_test.go           full pipeline integration tests — 5 tests
+│   └── benchmark_test.go             performance benchmarks — 8 benchmarks
 │
 ├── scripts/
-│   ├── build.bat                    ← Windows build script
-│   └── generate_testdata.go         ← Synthetic log generator
+│   ├── build.bat                     Windows build script
+│   └── generate_testdata.go          synthetic log generator (1K / 10K)
 │
 ├── docs/
-│   └── CLI.md                       ← Full CLI command reference
+│   └── CLI.md                        full CLI command reference
 │
-├── Makefile                         ← 20+ build, test, lint, release targets
-├── README.md
-├── CHANGELOG.md
-├── CONTRIBUTING.md
-├── SECURITY.md
-├── LICENSE                          ← MIT
+├── Makefile                          20+ build, test, lint, release targets
+├── CHANGELOG.md                      version history
+├── CONTRIBUTING.md                   developer guide
+├── SECURITY.md                       vulnerability reporting policy
+├── LICENSE                           MIT
 └── go.mod
 ```
 
@@ -426,23 +427,23 @@ sentinelgo-ueba/
 application:
   name: "SentinelGo"
   version: "1.0.0"
-  environment: "production"
+  environment: "production"       # development | staging | production
 
 logging:
-  level: "info"           # debug | info | warn | error
-  output: "console"       # console | file | both
+  level: "info"                   # debug | info | warn | error
+  output: "console"               # console | file | both
   file_path: "logs/sentinelgo.log"
 
 detection:
-  rules_path: "rules/"    # directory scanned for *.yaml rule files
+  rules_path: "rules/"            # scanned recursively for *.yaml files
   enabled: true
-  severity_threshold: "low"
+  severity_threshold: "low"       # minimum severity to include in output
 
 scoring:
   algorithm: "weighted"
   max_score: 100
-  weights:
-    severity:   0.40      # weight must sum to 1.0
+  weights:                        # must sum to 1.0
+    severity:   0.40
     confidence: 0.30
     frequency:  0.20
     context:    0.10
@@ -460,24 +461,38 @@ hardening:
 
 ---
 
+## Hardening Checks
+
+| Check ID | Platform | Description | Severity |
+|:--------:|:--------:|:------------|:--------:|
+| CIS-WIN-001 | Windows | Firewall enabled — Domain profile | High |
+| CIS-WIN-002 | Windows | Firewall enabled — Private profile | High |
+| CIS-WIN-003 | Windows | Firewall enabled — Public profile | High |
+| CIS-WIN-004 | Windows | Audit policy covers logon events | Medium |
+| CIS-WIN-005 | Windows | Windows Update service running | Medium |
+| CIS-WIN-006 | Windows | Password minimum length ≥ 14 | High |
+| CIS-LNX-001 | Linux | `/etc/passwd` not world-writable | Critical |
+| CIS-LNX-002 | Linux | SSH `PermitRootLogin` disabled | High |
+| CIS-LNX-003 | Linux | Firewall (ufw / firewalld) active | High |
+| CIS-LNX-004 | Linux | Password aging configured | Medium |
+
+---
+
 ## Performance
 
-Benchmarked on **AMD Ryzen 5 5600H** (12 threads, Windows 11):
+Benchmarked on **AMD Ryzen 5 5600H** — Windows 11, 12 threads:
 
 | Operation | 1,000 events | 10,000 events | Memory (10K) |
 |:----------|:------------:|:-------------:|:------------:|
 | Collection | 0.3 ms | 1.6 ms | 4.7 MB |
 | Parsing | 22 ms | 256 ms | 248 MB |
-| Detection (8 rules) | 0.8 ms | 11 ms | 32 MB |
-| Scoring (100 findings) | < 0.002 ms | — | 0 B |
+| Detection — 8 rules | 0.8 ms | 11 ms | 32 MB |
+| Scoring — 100 findings | < 0.002 ms | — | 0 B |
 | **Full Pipeline** | **29 ms** | **264 ms** | **285 MB** |
-
-Run benchmarks yourself:
 
 ```bash
 make bench
-# or
-go test ./tests/ -bench=. -benchmem -run=^$
+# go test ./tests/ -bench=. -benchmem -run=^$
 ```
 
 ---
@@ -485,47 +500,40 @@ go test ./tests/ -bench=. -benchmem -run=^$
 ## Development
 
 ```bash
-make deps             # download & tidy dependencies
-make test             # run all 46 tests
-make bench            # run 8 performance benchmarks
-make coverage         # generate HTML coverage report
-make fmt              # format all Go source files
-make lint             # run go vet + format check
-make build            # build for current platform → build/sentinelgo
-make release          # build for Windows + Linux + macOS → dist/
+make deps               # download and tidy dependencies
+make test               # run all 46 tests
+make bench              # run 8 performance benchmarks
+make coverage           # generate HTML coverage report → build/coverage.html
+make fmt                # format all Go source files
+make lint               # go vet + format check
+make build              # build for current platform  →  build/sentinelgo
+make release            # build Windows + Linux + macOS  →  dist/
 make generate-testdata  # generate 1K and 10K synthetic log files
-make clean            # remove build/ and dist/
+make clean              # remove build/ and dist/
 ```
 
 ### Adding a Detection Rule
 
-1. Create `rules/myorg_rule.yaml` following the schema above
-2. Run `sentinelgo rules validate` to check it
-3. Run `sentinelgo analyze testdata/auth.log --skip-hardening` to test it
-4. No recompile needed — rules are loaded at runtime
+```bash
+# 1. Create the rule file
+touch rules/myorg_custom.yaml
 
----
+# 2. Edit it following the YAML schema (see Detection Rules section above)
 
-## Hardening Checks
+# 3. Validate it
+sentinelgo rules validate
 
-| Check ID | Platform | Title | Severity |
-|:--------:|:--------:|:------|:--------:|
-| CIS-WIN-001 | Windows | Firewall enabled (Domain profile) | High |
-| CIS-WIN-002 | Windows | Firewall enabled (Private profile) | High |
-| CIS-WIN-003 | Windows | Firewall enabled (Public profile) | High |
-| CIS-WIN-004 | Windows | Audit policy covers logon events | Medium |
-| CIS-WIN-005 | Windows | Windows Update service running | Medium |
-| CIS-WIN-006 | Windows | Password minimum length ≥ 14 | High |
-| CIS-LNX-001 | Linux | /etc/passwd world-writable check | Critical |
-| CIS-LNX-002 | Linux | SSH PermitRootLogin disabled | High |
-| CIS-LNX-003 | Linux | Firewall (ufw/firewalld) active | High |
-| CIS-LNX-004 | Linux | Password aging configured | Medium |
+# 4. Test it against sample data
+sentinelgo analyze testdata/auth.log --skip-hardening
+
+# No recompile or restart needed
+```
 
 ---
 
 ## Roadmap
 
-### v1.0 — Current Release
+### v1.0 — Released
 
 | Feature | Status |
 |:--------|:------:|
@@ -533,7 +541,7 @@ make clean            # remove build/ and dist/
 | YAML-configurable rules | Done |
 | MITRE ATT&CK mapping | Done |
 | Weighted risk scoring | Done |
-| CIS hardening (Windows + Linux) | Done |
+| CIS hardening — Windows + Linux | Done |
 | HTML + JSON reporting | Done |
 | Multi-format log parsing | Done |
 | Cross-platform builds | Done |
@@ -543,35 +551,35 @@ make clean            # remove build/ and dist/
 
 | Feature | Description |
 |:--------|:------------|
-| UEBA Behavioural Analytics | Baseline normal behaviour per user, flag deviations |
+| UEBA Behavioural Analytics | Baseline per-user behaviour, flag statistical deviations |
 | ML Anomaly Detection | Unsupervised anomaly scoring on event sequences |
-| Plugin Architecture | Loadable `.so`/`.dll` rule plugins |
-| REST API | HTTP server for programmatic log submission |
-| Real-time Streaming | Tail log files and emit findings live |
+| Plugin Architecture | Loadable `.so` / `.dll` rule plugins |
+| REST API | HTTP server for programmatic log ingestion |
+| Real-time Streaming | Tail log files, emit findings live |
 
 ### v3.0 — Future
 
 | Feature | Description |
 |:--------|:------------|
 | Distributed Agents | Deploy collectors on remote hosts |
-| Central Console | Web UI for fleet-wide visibility |
-| SOAR Integration | Webhook/API push to XSOAR, Splunk SOAR |
-| Cloud Deployment | Docker, Kubernetes, cloud-native packaging |
+| Central Console | Web UI for fleet-wide threat visibility |
+| SOAR Integration | Webhook / API push to XSOAR, Splunk SOAR |
+| Cloud Packaging | Docker, Kubernetes, cloud-native deployment |
 
 ---
 
 ## License
 
-This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
+Licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
 
 ---
 
 ## Acknowledgements
 
-| Project | Role |
-|:--------|:-----|
+| Project | Purpose |
+|:--------|:--------|
 | [MITRE ATT&CK](https://attack.mitre.org/) | Threat classification framework |
-| [CIS Benchmarks](https://www.cisecurity.org/) | Hardening standards |
+| [CIS Benchmarks](https://www.cisecurity.org/) | System hardening standards |
 | [Cobra](https://github.com/spf13/cobra) | CLI framework |
 | [Zap](https://github.com/uber-go/zap) | Structured logging |
 | [yaml.v3](https://github.com/go-yaml/yaml) | YAML parsing |
@@ -579,7 +587,5 @@ This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for d
 ---
 
 <div align="center">
-
-**SentinelGo v1.0.0** — Built in Go · MIT License · MITRE ATT&CK Mapped
-
+<b>SentinelGo v1.0.0</b> &nbsp;·&nbsp; Go &nbsp;·&nbsp; MIT License &nbsp;·&nbsp; MITRE ATT&CK Mapped
 </div>
